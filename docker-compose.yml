@@ -17,9 +17,8 @@ services:
       - db
     environment:
       - DB_ENV_MYSQL_ROOT_PASSWORD=secret
-    volumes:
-      # Re-use local composer cache via host-volume
-      - "./:/app"
+    #volumes:
+    #  - "./:/app"
   db:
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     image: mysql:5

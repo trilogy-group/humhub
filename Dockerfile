@@ -13,7 +13,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin -
 
 RUN apt-get update \
 	&& apt-get install -y \
-#	libpng \
 	libpng-dev \
 	ldap-utils openssl libldap2-dev unzip zlib1g-dev libicu-dev g++ libgd3 libgd-dev
 
@@ -23,12 +22,10 @@ RUN docker-php-ext-install zip ldap pdo_mysql exif intl \
 	&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
 	&& docker-php-ext-install -j$(nproc) gd
 
-COPY ./composer.json /app
-COPY ./composer.lock /app
+COPY ./ /app
 
 WORKDIR /app
 
 RUN cd /app  \
+	&& chown -R www-data:www-data * \
 	&& composer install
-
-CMD ["cd /app && chown -R www-data:www-data *"]
