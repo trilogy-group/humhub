@@ -1,0 +1,32 @@
+# Development stack overrides
+#
+# Variables are populated with values from `.env`
+#
+version: '3.2'
+services:
+  php:
+    build:
+      context: .
+      # FLAVOUR can be undefinied OR -debian
+      # undefined == alpine base image
+      # -debian   == debian base image
+      #dockerfile: Dockerfile${FLAVOUR}
+    ports:
+      - 80:80
+    depends_on:
+      - db
+    environment:
+      - DB_ENV_MYSQL_ROOT_PASSWORD=secret
+    volumes:
+      # Re-use local composer cache via host-volume
+      - "./:/app"
+  db:
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    image: mysql:5
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_USER=humhub_dbuser
+      - MYSQL_PASSWORD=humhub_dbpass
+      - MYSQL_DATABASE=humhub
+    ports:
+      - '3306'
