@@ -22,10 +22,8 @@ RUN docker-php-ext-install zip ldap pdo_mysql exif intl \
 	&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
 	&& docker-php-ext-install -j$(nproc) gd
 
-COPY ./ /app
+COPY --chown=www-data:www-data ./ /app
 
 WORKDIR /app
 
-RUN cd /app  \
-	&& chown -R www-data:www-data * \
-	&& composer install
+RUN composer install

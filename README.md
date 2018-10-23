@@ -26,8 +26,9 @@ In order to simplify the running process we are providing a docker-cli bash shel
 When we run our cli we are given the following options, first we need to build our ecosystem, then we can run it; once its running we need to head to http://yourDockerHost and we'll be able to start the HubmHub setup
 
 
-`./docker-cli`
-`---------------------------------------------------------------------------`
+`./docker-cli`<br/>
+`---------------------------------------------------------------------------`<br/>
+
 `Build container: `
 `  docker-cli build`
 
