@@ -7,18 +7,12 @@ services:
   php:
     build:
       context: .
-      # FLAVOUR can be undefinied OR -debian
-      # undefined == alpine base image
-      # -debian   == debian base image
-      #dockerfile: Dockerfile${FLAVOUR}
     ports:
       - 80:80
     depends_on:
       - db
     environment:
       - DB_ENV_MYSQL_ROOT_PASSWORD=secret
-    #volumes:
-    #  - "./:/app"
   db:
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     image: mysql:5
@@ -28,4 +22,4 @@ services:
       - MYSQL_PASSWORD=humhub_dbpass
       - MYSQL_DATABASE=humhub
     ports:
-      - '3306'
+      - 3306:3306
