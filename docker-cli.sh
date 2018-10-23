@@ -18,7 +18,7 @@
 }
  start()
 {	
-    docker-compose -f docker-compose.yml up --build -d 
+    docker-compose -f docker-compose.yml up -d 
 }
  stop()
 {
@@ -30,7 +30,7 @@
 }
  containerExec()
 {
-    docker-compose -f docker-compose.yml exec server bash
+    docker-compose -f docker-compose.yml exec php bash
 }
  case "$1" in
     build)

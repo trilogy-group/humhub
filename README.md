@@ -49,11 +49,14 @@ First we have the server side, defined on Dockerfile; this image is based on off
 
 #### HumHub setup
 
-Once we start the setup, the web wizard will ask about the dabatase information, so you'll need to provide the following values:
+To start the setup head to the machine where you are running your docker compose, for example http://localhost once we start the setup, the web wizard will ask about the dabatase information, so you'll need to provide the following values, this values are also setup in the docker-compose file:
 
 DBHost: db
+
 DBUser: humhub_dbuser
+
 DBPassword: humhub_dbpass
+
 DBName: humhub
 
 Once the setup is finished, you'll have a local HumHub instance up and running
