@@ -1,0 +1,22 @@
+version: '3.2'
+services:
+
+    php:
+        build:
+            context: ""
+            dockerfile: Dockerfile
+        entrypoint: /opt/devspaces/entrypoint.sh
+        container_name: php
+        ports:
+        - "80:80"
+        - "3306:3306"
+        volumes:
+        - type: bind
+          source: ../../
+          target: /data
+        environment:
+        - DB_ENV_MYSQL_ROOT_PASSWORD=secret
+        - DB_ROOT_PASS=secret
+        - DB_NAME=humhub
+        - DB_USER=humhub_dbuser
+        - DB_PASS=humhub_dbpass

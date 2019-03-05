@@ -1,0 +1,59 @@
+--- # devspaces.yml
+name: humhubDev
+description:  Development environment for humhub
+
+# If you want to use a different Dockerfile for your DevSpace, provide the path
+# here.
+docker-file: Dockerfile
+
+# If you need additional files when building your Dockerfile, such as some
+# application binaries that your Dockerfile references, list the glob paths to
+# include here. They are relative to this devspaces.yml file.
+docker-build-includes: |
+    **/*
+ports:
+- protocol: http # can be udp|tcp|http
+  port-number: 80
+  description: web app http port
+- protocol: tcp # can be udp|tcp|http
+  port-number: 3306
+  description: mysql
+
+environment-vars:
+# Mysql Database entryponit VARS
+- name: DB_ENV_MYSQL_ROOT_PASSWORD
+  value: secret
+  description: humhub db secret
+- name: DB_ROOT_PASS
+  value: secret
+  description: MySQL root pass
+- name: DB_NAME
+  value: humhub
+  description: Mysql DB Name
+- name: DB_USER
+  value: humhub_dbuser
+  description: Mysql DB User
+- name: DB_PASS
+  value: humhub_dbpass
+  description: Mysql DB Password
+
+sync-ignore: |
+    .git
+    .gitmodules
+    .github
+    .idea
+    /node_modules
+
+    /protected/runtime/*
+    /node_modules
+    /protected/config/local/*
+    /.htaccess
+    /nbproject
+
+    favicon.ico
+    /.settings
+    /.buildpath
+    /.project
+    /protected/vendor/
+    **/tests/codeception/_support/_generated/**
+    **/tests/codeception/_output/**
