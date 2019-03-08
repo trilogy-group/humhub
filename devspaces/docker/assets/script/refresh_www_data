@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cp -rf /data/* $APACHE_DOCUMENT_ROOT
+chown -R www-data:www-data $APACHE_DOCUMENT_ROOT
+
+echo "Apache dir refreshed: $APACHE_DOCUMENT_ROOT"

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+sname=mysql
+logdir="/var/log/service/$sname"
+mkdir -p "$logdir"
+exec svlogd "$logdir"
